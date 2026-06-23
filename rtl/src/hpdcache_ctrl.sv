@@ -559,7 +559,8 @@ import hpdcache_pkg::*;
     //         previous cycle (stage 0). Useful in case of TLB miss for example
     assign st1_req_abort           = core_req_abort_i & ~st1_req.req.phys_indexed;
 
-    assign st1_req_is_uncacheable  = ~cfg_enable_i | st1_req.req.pma.uncacheable | st1_req.req.pma.io;
+    assign st1_req_is_uncacheable  = ~cfg_enable_i | st1_req.req.pma.uncacheable 
+                                                    | st1_req.req.pma.io;
     assign st1_req_is_load         =         is_load(st1_req.req.op) & ~st1_req.err_scrubbing;
     assign st1_req_is_store        =        is_store(st1_req.req.op);
     assign st1_req_is_amo          =          is_amo(st1_req.req.op);
